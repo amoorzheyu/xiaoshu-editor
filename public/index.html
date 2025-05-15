@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>小舒实时协作编辑器</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 95%;
+  max-width: 840px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease-in-out;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: #34495e;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #fefefe;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px #c7d2fe;
+}
+
+textarea {
+  width: 96%;
+  height: 320px;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px #c7d2fe;
+}
+
+button {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4f46e5;
+}
+
+.button-group {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 小舒实时协作编辑器</h1>
+    <div id="entry">
+      <h2>输入房间号开始协作</h2>
+      <input type="text" id="roomInput" placeholder="请输入房间号">
+      <div class="button-group">
+        <button onclick="joinRoom()">进入房间</button>
+      </div>
+    </div>
+    <div id="editor" class="hidden">
+      <h2>共享文本框</h2>
+      <textarea id="sharedText" placeholder="开始输入..."></textarea>
+      <div class="button-group">
+        <button onclick="leaveRoom()">退出房间</button>
+      </div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
